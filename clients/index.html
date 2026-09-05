@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="부모님부터 아이까지, 우리 가족에게 필요한 전국 여행 정보를 한곳에서 확인하세요." />
+  <!-- API 서버 주소만 설정합니다. 인증키를 넣지 않습니다. -->
+  <meta name="chat-api-base" content="http://127.0.0.1:8000" />
+  <meta name="app-build" content="integrated-v3" />
+  <title>온가 · 가족과 함께하는 편안한 여행</title>
+  <!-- 화면 전체를 손글씨 톤(Gaegu)으로 통일합니다. 로드 실패 시 시스템 한글 폰트로 안전하게 대체됩니다. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="style.css?v=integrated-v3" />
+  <script src="script.js?v=integrated-v3" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#user-input">질문 입력으로 건너뛰기</a>
+
+  <header class="site-header">
+    <a class="brand" href="./index.html" aria-label="온가 처음으로">
+      <span class="stamp" aria-hidden="true">온</span>
+      <span class="brand-name marker">온가</span>
+    </a>
+    <span class="brand-tag">가족 여행 안내</span>
+  </header>
+
+  <main class="page">
+    <section class="masthead" aria-labelledby="page-title">
+      <svg class="doodle doodle-star" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4c1.5 8 6.5 13 14 14.5-7.5 1.5-12.5 6.5-14 14.5-1.5-8-6.5-13-14-14.5C13.5 17 18.5 12 20 4Z"/></svg>
+      <svg class="doodle doodle-heart" viewBox="0 0 40 36" aria-hidden="true"><path d="M20 32C10 25 4 19.5 4 13.2 4 8.4 7.7 5 12.2 5c2.9 0 5.6 1.5 7.8 4.3C22.2 6.5 24.9 5 27.8 5 32.3 5 36 8.4 36 13.2 36 19.5 30 25 20 32Z"/></svg>
+      <svg class="doodle doodle-arrow" viewBox="0 0 80 50" aria-hidden="true"><path d="M4 8c18 34 44 40 68 22" stroke-dasharray="6 7"/><path d="M62 34l10-4 1 11"/></svg>
+      <svg class="doodle doodle-spark" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 3v8M15 19v8M3 15h8M19 15h8"/></svg>
+
+      <p class="kicker">전국 · 무장애 여행 정보</p>
+      <h1 id="page-title">우리 가족이 <em class="marker">여기 가기</em> 괜찮을까?</h1>
+      <p class="lede">계단, 쉴 곳, 화장실, 수유실까지 한 번에 확인해요.</p>
+    </section>
+
+    <p id="mock-notice" class="mock-notice" hidden>화면 테스트용 예시입니다. 표시된 장소·시설 정보는 실제 여행 판단에 사용하지 마세요.</p>
+
+    <section class="board" aria-label="여행 질문과 답변">
+      <div id="condition-bar" class="condition-bar" hidden>
+        <p id="condition-summary"></p>
+        <button id="condition-toggle" class="link-button" type="button" aria-expanded="false" aria-controls="needs-drawer">바꾸기</button>
+      </div>
+
+      <div id="needs-drawer" class="drawer" hidden>
+        <fieldset class="drawer-block">
+          <legend>누구랑 가세요?</legend>
+          <div id="family-options" class="chip-row"></div>
+        </fieldset>
+        <fieldset class="drawer-block">
+          <legend>어떤 점을 챙길까요?</legend>
+          <div id="needs-options" class="chip-row"></div>
+          <button id="needs-more" class="link-button" type="button" hidden></button>
+        </fieldset>
+        <button id="drawer-close" class="drawer-close" type="button">이대로 볼게요</button>
+      </div>
+
+      <div id="chat-window" class="thread" role="log" aria-label="대화 내용" aria-live="polite" aria-relevant="additions">
+        <div class="turn bot greeting-turn" id="greeting">
+          <svg class="oni" viewBox="0 0 44 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="17" class="face" />
+            <circle cx="14" cy="17.5" r="1.9" class="eye" />
+            <circle cx="26" cy="17.5" r="1.9" class="eye" />
+            <path d="M13.5 24.5c2.6 3.2 10.4 3.2 13 0" class="mouth" />
+          </svg>
+          <div class="turn-body">
+            <svg class="doodle doodle-wave" viewBox="0 0 60 12" aria-hidden="true"><path d="M2 8c5-7 10 5 15-1s10 6 15 0 10 4 12 1"/></svg>
+            <p class="lead">안녕하세요, 온이예요.</p>
+            <p>가고 싶은 곳을 알려주시면 우리 가족이 다니기 편한 곳인지 같이 살펴볼게요.</p>
+            <div id="greeting-ask">
+              <p class="ask">누구랑 가세요?</p>
+              <div class="chip-row">
+                <button type="button" class="pick" data-traveler="senior">부모님과</button>
+                <button type="button" class="pick" data-traveler="baby">아이와</button>
+                <button type="button" class="pick" data-traveler="both">다 같이</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="loading" class="loading" role="status" hidden>
+        <span class="pips" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span id="loading-text">공식 자료를 찾고 있어요…</span>
+      </div>
+
+      <div class="composer">
+        <div id="quick-actions" class="quick-actions" aria-label="추천 질문"></div>
+        <form id="chat-form" novalidate>
+          <label class="sr-only" for="user-input">어디를 가시는지와 궁금한 점</label>
+          <div class="input-wrap">
+            <textarea id="user-input" rows="1" maxlength="2000" placeholder="어디 가시는지 알려주세요" aria-describedby="input-help form-feedback"></textarea>
+            <button id="send-button" type="submit">보내기</button>
+          </div>
+          <p id="form-feedback" class="form-feedback" role="alert"></p>
+          <p id="input-help" class="input-help">예) 경복궁 계단 많아? · Enter로 보내기 <span>확인되지 않은 정보는 따로 알려드려요.</span></p>
+        </form>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <span class="footer-brand">온가</span>
+      <span>가족의 속도로, 함께 떠나요.</span>
+      <span class="footer-note">시설 상황은 바뀔 수 있어요. 가시기 전에 한 번 더 확인해 주세요.</span>
+    </footer>
+  </main>
+
+  <div id="sr-live" class="sr-only" role="status" aria-live="polite"></div>
+</body>
+</html>

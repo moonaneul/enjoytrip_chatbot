@@ -1,0 +1,143 @@
+[
+  {
+    "id": "senior_mobility",
+    "persona": "고령자",
+    "request": {
+      "message": "엄마랑 경복궁 가려고 하는데 계단이 힘들어.",
+      "traveler_type": "senior",
+      "needs": [
+        "stairs_difficult",
+        "restroom_important"
+      ],
+      "current_place_id": null
+    },
+    "ground_truth": "선택한 계단 조건은 공식 접근로/경사로/엘리베이터 근거로만 판단하고, 화장실은 확인 여부를 구분해야 한다.",
+    "expected": {
+      "success": true,
+      "place_name": "경복궁"
+    }
+  },
+  {
+    "id": "baby_facility",
+    "persona": "영유아",
+    "request": {
+      "message": "국립중앙박물관 아이랑 가기 괜찮아?",
+      "traveler_type": "baby",
+      "needs": [
+        "need_nursing_room",
+        "need_diaper_station",
+        "stroller"
+      ],
+      "current_place_id": null
+    },
+    "ground_truth": "수유실·기저귀 교환·유모차 정보는 공식 무장애 상세정보에 확인된 범위에서만 답해야 한다.",
+    "expected": {
+      "success": true,
+      "place_name": "국립중앙박물관"
+    }
+  },
+  {
+    "id": "both",
+    "persona": "both",
+    "request": {
+      "message": "국립중앙박물관 가족 모두 가기 괜찮아?",
+      "traveler_type": "both",
+      "needs": [
+        "stairs_difficult",
+        "need_nursing_room",
+        "need_rest_area"
+      ],
+      "current_place_id": null
+    },
+    "ground_truth": "고령자 이동 조건과 영유아 시설 조건을 함께 평가하고 Comfort Rule 결과를 변경하지 않아야 한다.",
+    "expected": {
+      "success": true,
+      "place_name": "국립중앙박물관"
+    }
+  },
+  {
+    "id": "unknown_nursing",
+    "persona": "정보 없음",
+    "request": {
+      "message": "경복궁 수유실 있어?",
+      "traveler_type": "baby",
+      "needs": [
+        "need_nursing_room"
+      ],
+      "current_place_id": null
+    },
+    "ground_truth": "수유실 원천값이 비어 있으면 '없음'이 아니라 현재 공식 자료에서 확인되지 않음으로 처리해야 한다.",
+    "expected": {
+      "success": true,
+      "comfort_level": "INSUFFICIENT_DATA"
+    }
+  },
+  {
+    "id": "ambiguous",
+    "persona": "장소 모호",
+    "request": {
+      "message": "중앙공원 부모님이랑 가기 괜찮아?",
+      "traveler_type": "senior",
+      "needs": [
+        "stairs_difficult"
+      ],
+      "current_place_id": null
+    },
+    "ground_truth": "동일 이름 후보가 여러 개면 임의 선택하지 않고 AMBIGUOUS_PLACE와 후보를 반환해야 한다.",
+    "expected": {
+      "success": false,
+      "error_code": "AMBIGUOUS_PLACE"
+    }
+  },
+  {
+    "id": "facility_location",
+    "persona": "시설 위치",
+    "request": {
+      "message": "수유실 위치는?",
+      "traveler_type": "baby",
+      "needs": [
+        "need_nursing_room"
+      ],
+      "current_place_id": "1001"
+    },
+    "ground_truth": "current_place_id를 재사용하고 수유실 시설 배열에 관광지명+공식 주소 기반 map_search_text를 반환해야 한다.",
+    "expected": {
+      "success": true,
+      "place_name": "국립중앙박물관"
+    }
+  },
+  {
+    "id": "not_found",
+    "persona": "존재하지 않는 장소",
+    "request": {
+      "message": "존재하지않는테스트관광지 가기 괜찮아?",
+      "traveler_type": "both",
+      "needs": [
+        "restroom_important"
+      ],
+      "current_place_id": null
+    },
+    "ground_truth": "공식 검색 결과가 없으면 일반 GPT 지식으로 보완하지 않고 PLACE_NOT_FOUND를 반환해야 한다.",
+    "expected": {
+      "success": false,
+      "error_code": "PLACE_NOT_FOUND"
+    }
+  },
+  {
+    "id": "senior_walking_burden",
+    "persona": "고령자 보행 부담",
+    "request": {
+      "message": "부모님이랑 국립중앙박물관 가려고 하는데 많이 걸어야 해?",
+      "traveler_type": "senior",
+      "needs": [
+        "walking_difficult"
+      ],
+      "current_place_id": null
+    },
+    "ground_truth": "보행거리·도보시간·차량 접근 등 공식 근거가 명확할 때만 걷기 부담을 판정하고, 숫자 거리만으로 임의 임계값을 적용하지 않아야 한다.",
+    "expected": {
+      "success": true,
+      "place_name": "국립중앙박물관"
+    }
+  }
+]

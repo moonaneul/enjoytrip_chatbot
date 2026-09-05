@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "fixture_only": true,
+    "description": "개발/테스트용 Mock. 실제 관광 사실로 사용하지 말 것."
+  },
+  "places": [
+    {
+      "search": {
+        "contentid": "1001",
+        "contenttypeid": "12",
+        "title": "국립중앙박물관",
+        "addr1": "서울특별시 용산구 서빙고로 137",
+        "modifiedtime": "20260901"
+      },
+      "common": {
+        "contentid": "1001",
+        "contenttypeid": "12",
+        "title": "국립중앙박물관",
+        "addr1": "서울특별시 용산구 서빙고로 137",
+        "overview": "개발 테스트용 Mock 관광지 설명입니다.",
+        "modifiedtime": "20260901"
+      },
+      "intro": {
+        "usetime": "10:00~18:00",
+        "restdate": "테스트용 정보",
+        "parking": "주차 가능"
+      },
+      "with_tour": {
+        "parking": "장애인 주차장 있음",
+        "route": "주출입구까지 무단차 접근 가능",
+        "wheelchair": "휠체어 대여 가능",
+        "elevator": "엘리베이터 있음",
+        "restroom": "장애인 화장실 있음",
+        "stroller": "유모차 대여 가능",
+        "lactationroom": "수유실 있음, 어린이박물관 1층",
+        "handicapetc": "휴게 공간과 벤치 있음",
+        "infantsfamilyetc": "기저귀 교환대 설치"
+      }
+    },
+    {
+      "search": {
+        "contentid": "1002",
+        "contenttypeid": "12",
+        "title": "경복궁",
+        "addr1": "서울특별시 종로구 사직로 161",
+        "modifiedtime": "20260901"
+      },
+      "common": {
+        "contentid": "1002",
+        "contenttypeid": "12",
+        "title": "경복궁",
+        "addr1": "서울특별시 종로구 사직로 161",
+        "overview": "개발 테스트용 Mock 관광지 설명입니다.",
+        "modifiedtime": "20260901"
+      },
+      "intro": {
+        "usetime": "09:00~18:00",
+        "restdate": "테스트용 정보",
+        "parking": "주차 가능"
+      },
+      "with_tour": {
+        "parking": "장애인 주차장 있음",
+        "route": "일부 구간 계단 있음. 휠체어 접근 가능한 경사로 있음",
+        "wheelchair": "휠체어 대여 가능",
+        "elevator": "",
+        "restroom": "장애인 화장실 있음",
+        "stroller": "유모차 대여 없음",
+        "lactationroom": "",
+        "handicapetc": "벤치 있음",
+        "infantsfamilyetc": ""
+      }
+    },
+    {
+      "search": {
+        "contentid": "2001",
+        "contenttypeid": "12",
+        "title": "중앙공원",
+        "addr1": "대전광역시 중구 테스트로 1",
+        "modifiedtime": "20260901"
+      },
+      "common": {
+        "contentid": "2001",
+        "contenttypeid": "12",
+        "title": "중앙공원",
+        "addr1": "대전광역시 중구 테스트로 1",
+        "overview": "장소 모호성 테스트용 Mock 데이터입니다.",
+        "modifiedtime": "20260901"
+      },
+      "intro": {},
+      "with_tour": {}
+    },
+    {
+      "search": {
+        "contentid": "3001",
+        "contenttypeid": "12",
+        "title": "중앙공원",
+        "addr1": "부산광역시 중구 테스트로 2",
+        "modifiedtime": "20260901"
+      },
+      "common": {
+        "contentid": "3001",
+        "contenttypeid": "12",
+        "title": "중앙공원",
+        "addr1": "부산광역시 중구 테스트로 2",
+        "overview": "장소 모호성 테스트용 Mock 데이터입니다.",
+        "modifiedtime": "20260901"
+      },
+      "intro": {},
+      "with_tour": {}
+    },
+    {
+      "search": {
+        "contentid": "4001",
+        "contenttypeid": "12",
+        "title": "성산일출봉",
+        "addr1": "제주특별자치도 서귀포시 성산읍 테스트로 3",
+        "modifiedtime": "20260901"
+      },
+      "common": {
+        "contentid": "4001",
+        "contenttypeid": "12",
+        "title": "성산일출봉",
+        "addr1": "제주특별자치도 서귀포시 성산읍 테스트로 3",
+        "overview": "전국 범위 코드 경로 확인을 위한 Mock 데이터입니다.",
+        "modifiedtime": "20260901"
+      },
+      "intro": {
+        "parking": "주차 가능"
+      },
+      "with_tour": {
+        "parking": "장애인 주차장 있음",
+        "route": "일부 구간 계단 있음",
+        "elevator": "엘리베이터 없음",
+        "restroom": "장애인 화장실 있음",
+        "stroller": "",
+        "lactationroom": "",
+        "handicapetc": "",
+        "infantsfamilyetc": ""
+      }
+    }
+  ]
+}
