@@ -252,7 +252,7 @@ Mock은 임의의 UI 예시이며 실제 관광 정보가 아닙니다. 일반 �
 
 현재 이 폴더는 **Front v5 + Backend v11 통합 계약**에 맞춰 갱신되어 있습니다.
 
-- Backend pytest: `50 passed`
+- Backend pytest: `51 passed`
 - Front → Backend `contract-check.mjs`: **필수 위반 0건 · 권고 0건**
 - Front JavaScript 정적 문법 검사: 통과
 - `AMBIGUOUS_PLACE.candidates` 선택 시 `content_id → current_place_id` 전달 로직 반영
